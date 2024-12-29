@@ -18,19 +18,21 @@ public class MainMenu extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+
+        
         primaryStage.setTitle("Main Menu");
 
         Label label = new Label("Select an option:");
 
         ListView<String> listView = new ListView<>();
         listView.getItems().addAll(
-            "Consult Book",
-            "Consult Author of Book",
-            "List Searched Books by Language",
-            "List Authors Alive in Specific Year",
-            "Top 10 Downloaded Books",
-            "Search Author by Name",
-            "Search Author by Birthdate"
+                "Consult Book",
+                "Consult Author of Book",
+                "List Searched Books by Language",
+                "List Authors Alive in Specific Year",
+                "Top 10 Downloaded Books",
+                "Search Author by Name",
+                "Search Author by Birthdate"
         );
 
         Button selectButton = new Button("Select");
@@ -55,38 +57,20 @@ public class MainMenu extends Application {
 
     private void handleChoice(String choice) {
         switch (choice) {
-            case "Consult Book":
-                consultBook();
-                break;
-            case "Consult Author of Book":
-                consultAuthor();
-                break;
-            case "List Searched Books by Language":
-                listBooksByLanguage();
-                break;
-            case "List Authors Alive in Specific Year":
-                listAuthorsByYear();
-                break;
-            case "Top 10 Downloaded Books":
-                top10Books();
-                break;
-            case "Search Author by Name":
-                searchAuthorByName();
-                break;
-            case "Search Author by Birthdate":
-                searchAuthorByBirthdate();
-                break;
-            default:
-                showAlert(Alert.AlertType.ERROR, "Error", "Invalid choice!");
+            case "Consult Book for title" -> openConsultBookMenu();
+            case "Consult Author of Book" -> consultAuthor();
+            case "List Searched Books by Language" -> listBooksByLanguage();
+            case "List Authors Alive in Specific Year" -> listAuthorsByYear();
+            case "Top 10 Downloaded Books" -> top10Books();
+            case "Search Author by Name" -> searchAuthorByName();
+            case "Search Author by Birthdate" -> searchAuthorByBirthdate();
+            default -> showAlert(Alert.AlertType.ERROR, "Error", "Invalid choice!");
         }
     }
 
-    private void consultBook() {
-        String book = showTextInputDialog("Consult Book", "Enter book title:");
-        if (book != null) {
-            showAlert(Alert.AlertType.INFORMATION, "Consult Book", "Consulting book: " + book);
-            // Add backend integration here
-        }
+    private void openConsultBookMenu() {
+        ConsultBookMenu consultBookMenu = new ConsultBookMenu();
+        consultBookMenu.show();
     }
 
     private void consultAuthor() {

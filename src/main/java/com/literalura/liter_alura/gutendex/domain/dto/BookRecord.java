@@ -8,5 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public record BookRecord(
     int id,
     String title,
-    List<Author> authors
+    List<Author> authors,
+    List<String> languages,
+    int download_count
 ) {}
