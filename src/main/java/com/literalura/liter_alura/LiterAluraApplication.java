@@ -2,13 +2,13 @@ package com.literalura.liter_alura;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.ApplicationContext;
 
 import com.literalura.liter_alura.view.ConsultBookMenu;
+import com.literalura.liter_alura.view.ListAllAuthorsMenu;
 import com.literalura.liter_alura.view.MainMenu;
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+@SpringBootApplication
 public class LiterAluraApplication  {
 
 
@@ -16,8 +16,9 @@ public class LiterAluraApplication  {
         // Initialize Spring Context
         ApplicationContext context = SpringApplication.run(LiterAluraApplication.class, args);
 
-        // Pass the context to ConsultBookMenu
+        // Pass the context to UI
         ConsultBookMenu.setApplicationContext(context);
+        ListAllAuthorsMenu.setApplicationContext(context);
 
         // Launch the JavaFX MainMenu
         MainMenu.launch(MainMenu.class, args);

@@ -2,7 +2,9 @@ package com.literalura.liter_alura.view;
 
 import org.springframework.context.ApplicationContext;
 
+import com.literalura.liter_alura.books.application.BookServiceImpl;
 import com.literalura.liter_alura.gutendex.application.GutendexServiceImpl;
+import com.literalura.liter_alura.gutendex.domain.dto.BookRecord;
 import com.literalura.liter_alura.gutendex.domain.dto.SearchResponse;
 
 import javafx.scene.Scene;
@@ -20,6 +22,10 @@ public class ConsultBookMenu {
 
     private final GutendexServiceImpl gutendexService;
 
+    private final BookServiceImpl bookServiceImpl;
+
+    private BookRecord lastFoundBook;
+
     public static void setApplicationContext(ApplicationContext context) {
         springContext = context;
     }
@@ -27,6 +33,7 @@ public class ConsultBookMenu {
     public ConsultBookMenu() {
         // Retrieve the Spring bean here
         gutendexService = springContext.getBean(GutendexServiceImpl.class);
+        bookServiceImpl = springContext.getBean(BookServiceImpl.class);
     }
 
     public void show() {
@@ -40,6 +47,9 @@ public class ConsultBookMenu {
         TextArea resultArea = new TextArea();
         resultArea.setEditable(false);
 
+        Button goBackButton = new Button("Go Back");
+        goBackButton.setOnAction(event -> stage.close());
+
         searchButton.setOnAction(event -> {
             String bookTitle = textField.getText();
             if (bookTitle == null || bookTitle.isBlank()) {
@@ -49,7 +59,10 @@ public class ConsultBookMenu {
 
                     SearchResponse response = gutendexService.searchBooks(bookTitle);
                     StringBuilder result = new StringBuilder();
-
+                    lastFoundBook = response.results().stream()
+                            .filter(book -> book.title().toLowerCase().contains(bookTitle.toLowerCase()))
+                            .findFirst()
+                            .orElse(null);
                     response.results().stream()
                             .filter(book -> book.title().toLowerCase().contains(bookTitle.toLowerCase()))
                             .findFirst().ifPresent(book -> {
@@ -80,7 +93,10 @@ public class ConsultBookMenu {
                                 result.append("\n");
 
                             });
-
+                    if(result.length() > 0 && lastFoundBook != null){
+                            bookServiceImpl.saveBook(lastFoundBook);
+                            showAlert(Alert.AlertType.INFORMATION, "Success", "Book saved successfully.");
+                    }
                     resultArea.setText(result.length() > 0 ? result.toString() : "No results found for: " + bookTitle);
                 } catch (Exception e) {
                     showAlert(Alert.AlertType.ERROR, "Error", "Failed to retrieve book information: " + e.getMessage());
@@ -88,7 +104,7 @@ public class ConsultBookMenu {
             }
         });
 
-        VBox vbox = new VBox(10, label, textField, searchButton, resultArea);
+        VBox vbox = new VBox(10, label, textField, searchButton, resultArea,goBackButton);
         vbox.setStyle("-fx-padding: 10; -fx-alignment: center;");
 
         Scene scene = new Scene(vbox, 400, 400);

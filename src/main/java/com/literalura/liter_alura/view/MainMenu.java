@@ -26,8 +26,8 @@ public class MainMenu extends Application {
 
         ListView<String> listView = new ListView<>();
         listView.getItems().addAll(
-                "Consult Book",
-                "Consult Author of Book",
+                "Consult Book for title",
+                "List All Authors Of Searched Books",
                 "List Searched Books by Language",
                 "List Authors Alive in Specific Year",
                 "Top 10 Downloaded Books",
@@ -58,7 +58,7 @@ public class MainMenu extends Application {
     private void handleChoice(String choice) {
         switch (choice) {
             case "Consult Book for title" -> openConsultBookMenu();
-            case "Consult Author of Book" -> consultAuthor();
+            case "List All Authors Of Searched Books" -> consultAuthor();
             case "List Searched Books by Language" -> listBooksByLanguage();
             case "List Authors Alive in Specific Year" -> listAuthorsByYear();
             case "Top 10 Downloaded Books" -> top10Books();
@@ -74,11 +74,8 @@ public class MainMenu extends Application {
     }
 
     private void consultAuthor() {
-        String author = showTextInputDialog("Consult Author", "Enter author name:");
-        if (author != null) {
-            showAlert(Alert.AlertType.INFORMATION, "Consult Author", "Consulting author: " + author);
-            // Add backend integration here
-        }
+        ListAllAuthorsMenu listAllAuthorsMenu = new ListAllAuthorsMenu();
+        listAllAuthorsMenu.show();
     }
 
     private void listBooksByLanguage() {
