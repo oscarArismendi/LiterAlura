@@ -72,4 +72,15 @@ public class BookServiceImpl implements BookService {
                 return authorRepository.save(author);
             });
     }
+
+    @Override
+    public List<Book> getAll() {
+        List<Book> books = bookRepository.findAll();
+
+        if (books.isEmpty()) {
+            return null;
+        }
+
+        return books;
+    }
 }

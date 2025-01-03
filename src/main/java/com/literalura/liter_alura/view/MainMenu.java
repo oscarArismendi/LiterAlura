@@ -27,6 +27,7 @@ public class MainMenu extends Application {
         ListView<String> listView = new ListView<>();
         listView.getItems().addAll(
                 "Consult Book for title",
+                "List All Searched Books",
                 "List All Authors Of Searched Books",
                 "List Searched Books by Language",
                 "List Authors Alive in Specific Year",
@@ -58,6 +59,7 @@ public class MainMenu extends Application {
     private void handleChoice(String choice) {
         switch (choice) {
             case "Consult Book for title" -> openConsultBookMenu();
+            case "List All Searched Books" -> listDatabaseBooksMenu();
             case "List All Authors Of Searched Books" -> consultAuthor();
             case "List Searched Books by Language" -> listBooksByLanguage();
             case "List Authors Alive in Specific Year" -> listAuthorsByYear();
@@ -71,6 +73,11 @@ public class MainMenu extends Application {
     private void openConsultBookMenu() {
         ConsultBookMenu consultBookMenu = new ConsultBookMenu();
         consultBookMenu.show();
+    }
+
+    private void listDatabaseBooksMenu(){
+        ListAllBooksMenu listAllBooksMenu = new ListAllBooksMenu();
+        listAllBooksMenu.show();
     }
 
     private void consultAuthor() {

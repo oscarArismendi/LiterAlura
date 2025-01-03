@@ -6,6 +6,7 @@ import org.springframework.context.ApplicationContext;
 
 import com.literalura.liter_alura.view.ConsultBookMenu;
 import com.literalura.liter_alura.view.ListAllAuthorsMenu;
+import com.literalura.liter_alura.view.ListAllBooksMenu;
 import com.literalura.liter_alura.view.MainMenu;
 
 @SpringBootApplication
@@ -19,7 +20,7 @@ public class LiterAluraApplication  {
         // Pass the context to UI
         ConsultBookMenu.setApplicationContext(context);
         ListAllAuthorsMenu.setApplicationContext(context);
-
+        ListAllBooksMenu.setApplicationContext(context);
         // Launch the JavaFX MainMenu
         MainMenu.launch(MainMenu.class, args);
     }

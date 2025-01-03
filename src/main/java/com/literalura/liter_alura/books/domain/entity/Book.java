@@ -42,7 +42,7 @@ public class Book {
 
     private int download_count;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(
         name = "book_author", // Name of the join table
         joinColumns = @JoinColumn(name = "book_id"),
