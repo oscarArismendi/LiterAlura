@@ -53,7 +53,7 @@ public class BookServiceImpl implements BookService {
                     book.getId(),
                     book.getTitle(),
                     book.getAuthors().stream()
-                        .map(author -> new AuthorRecord(author.getName(), author.getBirth_year(), author.getDeath_year()))
+                        .map(author -> new AuthorRecord(author.getName(), author.getBirthYear(), author.getDeathYear()))
                         .collect(Collectors.toSet()),
                     book.getLanguages(),
                     book.getDownload_count()

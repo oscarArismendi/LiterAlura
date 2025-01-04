@@ -33,8 +33,8 @@ public class Author {
     private Long id;
 
     String name;
-    Integer birth_year;
-    Integer death_year;
+    Integer birthYear;
+    Integer deathYear;
 
     @ManyToMany(mappedBy = "authors")
     @Builder.Default
@@ -42,7 +42,7 @@ public class Author {
 
     public Author(String name, Integer birthYear, Integer deathYear) {
         this.name = name;
-        this.birth_year = birthYear;
-        this.death_year = deathYear;
+        this.birthYear = birthYear;
+        this.deathYear = deathYear;
     }
 }

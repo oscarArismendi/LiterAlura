@@ -54,9 +54,9 @@ public class ListAllBooksMenu {
                                 book.getAuthors().forEach(author -> {
                                     result.append("  - ").append(author.getName())
                                             .append(" (Born: ")
-                                            .append(author.getBirth_year() != null ? author.getBirth_year() : "Unknown")
+                                            .append(author.getBirthYear() != null ? author.getBirthYear() : "Unknown")
                                             .append(", Died: ")
-                                            .append(author.getDeath_year() != null ? author.getDeath_year() : "Unknown")
+                                            .append(author.getDeathYear() != null ? author.getDeathYear() : "Unknown")
                                             .append(")\n");
                                 });
                             }

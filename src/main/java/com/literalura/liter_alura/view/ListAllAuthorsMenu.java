@@ -43,15 +43,15 @@ public class ListAllAuthorsMenu {
 
             List<Author> response = authorServiceImpl.getAll();
             StringBuilder result = new StringBuilder();
-            if(response != null){
+            if (response != null) {
 
                 response.stream()
                         .forEach(author -> {
                             result.append("  - ").append(author.getName())
                                     .append(" (Born: ")
-                                    .append(author.getBirth_year() != null ? author.getBirth_year() : "Unknown")
+                                    .append(author.getBirthYear() != null ? author.getBirthYear() : "Unknown")
                                     .append(", Died: ")
-                                    .append(author.getDeath_year() != null ? author.getDeath_year() : "Unknown")
+                                    .append(author.getDeathYear() != null ? author.getDeathYear() : "Unknown")
                                     .append(")\n");
                         });
             }
@@ -61,7 +61,7 @@ public class ListAllAuthorsMenu {
             showAlert(Alert.AlertType.ERROR, "Error", "Failed to retrieve book information: " + e.getMessage());
         }
 
-        VBox vbox = new VBox(10,label, resultArea,goBackButton);
+        VBox vbox = new VBox(10, label, resultArea, goBackButton);
         vbox.setStyle("-fx-padding: 10; -fx-alignment: center;");
 
         Scene scene = new Scene(vbox, 400, 400);

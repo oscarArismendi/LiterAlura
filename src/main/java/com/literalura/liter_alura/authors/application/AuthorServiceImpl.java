@@ -29,4 +29,8 @@ public class AuthorServiceImpl implements AuthorService {
         return authors;
     }
 
+    @Override
+    public List<Author> getAuthorsAliveInYear(int year) {
+        return authorRepository.findByBirthYearLessThanEqualAndDeathYearGreaterThanOrDeathYearIsNull(year, year);
+    }
 }

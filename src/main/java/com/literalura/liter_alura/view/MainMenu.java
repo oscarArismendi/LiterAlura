@@ -29,8 +29,8 @@ public class MainMenu extends Application {
                 "Consult Book for title",
                 "List All Searched Books",
                 "List All Authors Of Searched Books",
-                "List Searched Books by Language",
                 "List Authors Alive in Specific Year",
+                "List Searched Books by Language",
                 "Top 10 Downloaded Books",
                 "Search Author by Name",
                 "Search Author by Birthdate"
@@ -94,11 +94,8 @@ public class MainMenu extends Application {
     }
 
     private void listAuthorsByYear() {
-        String year = showTextInputDialog("List Authors", "Enter year:");
-        if (year != null) {
-            showAlert(Alert.AlertType.INFORMATION, "List Authors", "Listing authors alive in: " + year);
-            // Add backend integration here
-        }
+        ListAuthorsAliveMenu listAuthorsAliveMenu = new ListAuthorsAliveMenu();
+        listAuthorsAliveMenu.show();
     }
 
     private void top10Books() {
