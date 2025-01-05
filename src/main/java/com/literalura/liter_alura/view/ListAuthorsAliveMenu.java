@@ -32,7 +32,7 @@ private static ApplicationContext springContext;
 
     public void show() {
         Stage stage = new Stage();
-        stage.setTitle("List of all authors of searched books");
+        stage.setTitle("List authors alive in the database in specific year");
         Label label = new Label("Enter year:");
         TextField textField = new TextField();
         Button searchButton = new Button("Search");

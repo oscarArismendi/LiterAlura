@@ -6,7 +6,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -31,9 +30,7 @@ public class MainMenu extends Application {
                 "List All Authors Of Searched Books",
                 "List Authors Alive in Specific Year",
                 "List Stats Of Searched Books by Language",
-                "Top 10 Downloaded Books",
-                "Search Author by Name",
-                "Search Author by Birthdate"
+                "Top 10 Downloaded Books"
         );
 
         Button selectButton = new Button("Select");
@@ -64,8 +61,6 @@ public class MainMenu extends Application {
             case "List Stats Of Searched Books by Language" -> listBooksByLanguage();
             case "List Authors Alive in Specific Year" -> listAuthorsByYear();
             case "Top 10 Downloaded Books" -> top10Books();
-            case "Search Author by Name" -> searchAuthorByName();
-            case "Search Author by Birthdate" -> searchAuthorByBirthdate();
             default -> showAlert(Alert.AlertType.ERROR, "Error", "Invalid choice!");
         }
     }
@@ -98,30 +93,6 @@ public class MainMenu extends Application {
     private void top10Books() {
         Top10DownloadBooksMenu top10DownloadBooksMenu = new Top10DownloadBooksMenu();
         top10DownloadBooksMenu.show();
-    }
-
-    private void searchAuthorByName() {
-        String name = showTextInputDialog("Search Author", "Enter author name:");
-        if (name != null) {
-            showAlert(Alert.AlertType.INFORMATION, "Search Author", "Searching author: " + name);
-            // Add backend integration here
-        }
-    }
-
-    private void searchAuthorByBirthdate() {
-        String birthdate = showTextInputDialog("Search Author", "Enter birthdate (YYYY-MM-DD):");
-        if (birthdate != null) {
-            showAlert(Alert.AlertType.INFORMATION, "Search Author", "Searching author born on: " + birthdate);
-            // Add backend integration here
-        }
-    }
-
-    private String showTextInputDialog(String title, String content) {
-        TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle(title);
-        dialog.setHeaderText(null);
-        dialog.setContentText(content);
-        return dialog.showAndWait().orElse(null);
     }
 
     private void showAlert(Alert.AlertType type, String title, String content) {
