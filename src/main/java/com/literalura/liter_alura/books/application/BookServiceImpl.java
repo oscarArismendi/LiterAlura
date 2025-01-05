@@ -1,6 +1,7 @@
 package com.literalura.liter_alura.books.application;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -82,5 +83,15 @@ public class BookServiceImpl implements BookService {
         }
 
         return books;
+    }
+    
+    @Override
+    public Map<String, Long> getBooksCountByLanguage() {
+        List<Object[]> results = bookRepository.countBooksByLanguage();
+        return results.stream()
+            .collect(Collectors.toMap(
+                result -> (String) result[0],  // Language (key)
+                result -> (Long) result[1]    // Count (value)
+            ));
     }
 }

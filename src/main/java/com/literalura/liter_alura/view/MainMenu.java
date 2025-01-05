@@ -30,7 +30,7 @@ public class MainMenu extends Application {
                 "List All Searched Books",
                 "List All Authors Of Searched Books",
                 "List Authors Alive in Specific Year",
-                "List Searched Books by Language",
+                "List Stats Of Searched Books by Language",
                 "Top 10 Downloaded Books",
                 "Search Author by Name",
                 "Search Author by Birthdate"
@@ -61,7 +61,7 @@ public class MainMenu extends Application {
             case "Consult Book for title" -> openConsultBookMenu();
             case "List All Searched Books" -> listDatabaseBooksMenu();
             case "List All Authors Of Searched Books" -> consultAuthor();
-            case "List Searched Books by Language" -> listBooksByLanguage();
+            case "List Stats Of Searched Books by Language" -> listBooksByLanguage();
             case "List Authors Alive in Specific Year" -> listAuthorsByYear();
             case "Top 10 Downloaded Books" -> top10Books();
             case "Search Author by Name" -> searchAuthorByName();
@@ -86,11 +86,8 @@ public class MainMenu extends Application {
     }
 
     private void listBooksByLanguage() {
-        String language = showTextInputDialog("List Books", "Enter language:");
-        if (language != null) {
-            showAlert(Alert.AlertType.INFORMATION, "List Books", "Listing books in: " + language);
-            // Add backend integration here
-        }
+        CountBooksByLanguageMenu countBooksByLanguageMenu = new CountBooksByLanguageMenu();
+        countBooksByLanguageMenu.show();
     }
 
     private void listAuthorsByYear() {
