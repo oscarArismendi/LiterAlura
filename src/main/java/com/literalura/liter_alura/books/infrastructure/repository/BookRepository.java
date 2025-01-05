@@ -15,4 +15,6 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     @Query(value = "SELECT unnest(languages) AS language, COUNT(*) FROM books GROUP BY language", nativeQuery = true)
     List<Object[]> countBooksByLanguage();
+
+    List<Book> findTop10ByOrderByDownloadCountDesc();
 }

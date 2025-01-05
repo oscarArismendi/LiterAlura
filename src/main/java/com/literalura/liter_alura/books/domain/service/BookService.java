@@ -15,4 +15,6 @@ public interface BookService {
     List<Book> getAll();
 
     Map<String, Long> getBooksCountByLanguage();
+
+    List<Book> getTop10MostDownloadedBooks();
 }

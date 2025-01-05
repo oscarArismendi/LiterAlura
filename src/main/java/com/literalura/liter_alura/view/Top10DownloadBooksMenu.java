@@ -15,8 +15,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class ListAllBooksMenu {
-    private static ApplicationContext springContext;
+public class Top10DownloadBooksMenu {
+private static ApplicationContext springContext;
 
     private final BookServiceImpl bookServiceImpl;
 
@@ -24,15 +24,15 @@ public class ListAllBooksMenu {
         springContext = context;
     }
 
-    public ListAllBooksMenu() {
+    public Top10DownloadBooksMenu() {
         // Retrieve the Spring bean here
         bookServiceImpl = springContext.getBean(BookServiceImpl.class);
     }
 
     public void show() {
         Stage stage = new Stage();
-        stage.setTitle("List of all books searched");
-        Label label = new Label("List of books:");
+        stage.setTitle("List of top 10 searched books");
+        Label label = new Label("List of top 10 books:");
         TextArea resultArea = new TextArea();
         resultArea.setEditable(false);
 
@@ -40,12 +40,13 @@ public class ListAllBooksMenu {
         goBackButton.setOnAction(event -> stage.close());
         try {
 
-            List<Book> response = bookServiceImpl.getAll();
+            List<Book> response = bookServiceImpl.getTop10MostDownloadedBooks();
             StringBuilder result = new StringBuilder();
             if(response != null){
-
+                int[] rank = {1}; // Using an array to maintain the rank in a lambda
                 response.stream()
                         .forEach(book -> {
+                            result.append(rank[0]).append(".\n");
                             result.append("Title: ").append(book.getTitle()).append("\n");
                             result.append("Authors:\n");
                             if (book.getAuthors().isEmpty()) {
@@ -73,9 +74,7 @@ public class ListAllBooksMenu {
                             result.append("\n");
                             result.append("----------------------------------------");
                             result.append("\n");
-
-
-
+                            rank[0]++;
                         });
             }
 

@@ -96,8 +96,8 @@ public class MainMenu extends Application {
     }
 
     private void top10Books() {
-        showAlert(Alert.AlertType.INFORMATION, "Top 10 Books", "Displaying top 10 downloaded books.");
-        // Add backend integration here
+        Top10DownloadBooksMenu top10DownloadBooksMenu = new Top10DownloadBooksMenu();
+        top10DownloadBooksMenu.show();
     }
 
     private void searchAuthorByName() {

@@ -57,7 +57,7 @@ public class BookServiceImpl implements BookService {
                         .map(author -> new AuthorRecord(author.getName(), author.getBirthYear(), author.getDeathYear()))
                         .collect(Collectors.toSet()),
                     book.getLanguages(),
-                    book.getDownload_count()
+                    book.getDownloadCount()
                 ))
                 .collect(Collectors.toList());
     }
@@ -93,5 +93,10 @@ public class BookServiceImpl implements BookService {
                 result -> (String) result[0],  // Language (key)
                 result -> (Long) result[1]    // Count (value)
             ));
+    }
+
+    @Override
+    public List<Book> getTop10MostDownloadedBooks() {
+        return bookRepository.findTop10ByOrderByDownloadCountDesc();
     }
 }

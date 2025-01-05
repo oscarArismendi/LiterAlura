@@ -10,6 +10,7 @@ import com.literalura.liter_alura.view.ListAllAuthorsMenu;
 import com.literalura.liter_alura.view.ListAllBooksMenu;
 import com.literalura.liter_alura.view.ListAuthorsAliveMenu;
 import com.literalura.liter_alura.view.MainMenu;
+import com.literalura.liter_alura.view.Top10DownloadBooksMenu;
 
 @SpringBootApplication
 public class LiterAluraApplication  {
@@ -25,6 +26,7 @@ public class LiterAluraApplication  {
         ListAllBooksMenu.setApplicationContext(context);
         ListAuthorsAliveMenu.setApplicationContext(context);
         CountBooksByLanguageMenu.setApplicationContext(context);
+        Top10DownloadBooksMenu.setApplicationContext(context);
         // Launch the JavaFX MainMenu
         MainMenu.launch(MainMenu.class, args);
     }

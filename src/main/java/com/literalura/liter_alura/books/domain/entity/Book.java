@@ -40,7 +40,7 @@ public class Book {
 
     private List<String> languages;
 
-    private int download_count;
+    private int downloadCount;
 
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(
